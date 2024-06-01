@@ -1,13 +1,110 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.play-icon {
+  @apply transition-transform duration-300 ease-in;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.button:hover .play-icon {
+  transform: rotate(360deg) scale(1);
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+@font-face {
+  font-family: "Copernicus Trial";
+  src: url("./assets/fonts/copernicus-font-family-1717183879-0/CopernicusTrial-Book-BF66160450c2e92.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-copernicus {
+  font-family: "Copernicus Trial", serif;
+}
+
+.scene {
+  perspective: 600px;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transform-origin: center right;
+  transition: transform 1s;
+}
+
+.card.is-flipped {
+  transform: translateX(-100%) rotateY(-180deg);
+}
+
+.hover-effect {
+  transform: translateX(-1%) rotateY(8deg);
+}
+
+.card__face {
+  backface-visibility: hidden;
+}
+
+.card__face--back {
+  transform: rotateY(180deg);
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.1s ease-out;
+}
+
+.animate-slide-left.finished {
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.animate-slide-right {
+  animation: slideRight 0.1s ease-out;
+}
+
+.animate-slide-right.finished {
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-out-left {
+  animation: slideOutLeft 0.5s ease-out;
 }
